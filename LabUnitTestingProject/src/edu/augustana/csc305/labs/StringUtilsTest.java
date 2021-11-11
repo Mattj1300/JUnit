@@ -31,6 +31,9 @@ public class StringUtilsTest {
 		// ADD your own assert tests here, to find any remaining bugs in this code
 	}
 
-
+	@Test
+	public void testCaeserSame() {
+		assertEquals("MATT JUNK", StringUtils.caesarCipher("MATT JUNK", 0));
+	}
 
 }
