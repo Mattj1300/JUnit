@@ -21,40 +21,41 @@ package edu.augustana.csc305.labs;
 //         (read Skrien appendix B, pp 318-331)
 
 public class Hannaldous {
-	
-	// method one to do the thing for Monday's meeting 
-	public static int howbad(int n, String[] x, double roXORZ) {
-		int j = x.length - 1;
-		int ret = 0;
-		n = n; // n = ? 
-		for (int i = 0; i < x.length; i = i + 1) 
-		{
-		if (x[j].length() < n || Help(x[j]).equals("y"))
-			ret++;
-	j--;  }
-		return ret;
-						}
-	// method two helps, and i wrote it at 11:58 p.m. on sunday... 
-	// couldn't find it on stack overflow, so I rolled my pwn. 
-	static String Help(String MAYBE) 
-	{		
-		int yeah = -1;
-		while (yeah++ < MAYBE.length() - 1) {
-			char izard /*PoKeMoN babee*/ = MAYBE.charAt(yeah); 
+
+	// method one to rate the strength of the users password
+	public static int howBad(int minReq, String[] passwordList) {
+		int j = passwordList.length - 1;
+		int rating = 0;
+		for (int i = 0; i < passwordList.length; i = i + 1) {
+			if (passwordList[j].length() < minReq || checkLetter(passwordList[j]).equals("y"))
+				rating++;
+			j--;
+		}
+		return rating;
+	}
+
+	// method two checks to make checks whether the string contains any non-letters
+	public static String checkLetter(String password) {
+		int count = -1;
+		while (count++ < password.length() - 1) {
+			char letter = password.charAt(count);
+
+			if (!(letter >= 'a' && letter <= 'z' || letter >= 'A' && letter <= 'Z'))
+				return "n";
 			
-			if (! (izard >= 'a' && izard <='z'|| izard >='A' && izard <= 'Z')) return "n"; }
+			count++;
+		}
 		return "y";
 	}
-	
-	
+
 	public static void main(String[] args) {
-		
-		System.out.println(Help("bigmoose$"));
-		System.out.println(Help("emusareawesome"));
-		System.out.println(Help("17"));
+
+		System.out.println(checkLetter("bigmoose$"));
+		System.out.println(checkLetter("emusareawesome"));
+		System.out.println(checkLetter("17"));
 
 		String[] passwords = new String[] { "bigmoose$", "emusareawesome", "123goodbye", "ok&y", "17", "cat" };
-		System.out.println(howbad(8,passwords, 0.0));
+		System.out.println(howBad(8, passwords));
 	}
 
 }
